@@ -13,6 +13,9 @@ function init(){
         getMeals();
     }
     checkMenu();
+    if(formLogin){
+        formLogin.addEventListener("submit", login);
+    }
 }
 
 //Hämta måltider
@@ -36,7 +39,7 @@ async function showMeals(meals) {
     meals.forEach(meal => {
         allMeals.innerHTML += `<section class="oneMeal">
         <h4>${meal.mealname}</h4>
-        <p>${meal.ingredients}</p>
+        <p>${meal.ingredients.join(", ")}</p>
         <p>${meal.category}</p>
         <div id="mealButtons">
         <button id="edit">Redigera</button>
@@ -49,9 +52,9 @@ async function showMeals(meals) {
 //Kollar menyn
 function checkMenu(){
 
-    localStorage.setItem("voff-token", "hejsan");
+    //localStorage.setItem("voff-token", "hejsan");
 
-    if(localStorage.getItem("voff-token")){
+    if(localStorage.getItem("voff_token")){
         navMenu.innerHTML=`
         <a href="index.html">Startsida</a>
         <a href="bookings.html">Bokningar</a>
@@ -61,5 +64,51 @@ function checkMenu(){
         navMenu.innerHTML=`
         <a href="index.html">Startsida</a>
         <a href="login.html">Logga in</a>`
+    }
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    if(logoutBtn){
+        logoutBtn.addEventListener("click", () => {
+            localStorage.removeItem("voff-token");
+            window.location.href = "login.html";
+        })
+    }
+}
+
+async function login(e){
+    e.preventDefault();
+
+    //Hämtar in värden från formulär
+    const usernameValue = document.getElementById("username").value;
+    let passwordValue = document.getElementById("password").value;
+
+    if(!usernameValue || !passwordValue){
+        console.log("Du måste fylla i alla fält!");
+    }
+
+    const admin = {
+        username: usernameValue,
+        password: passwordValue
+    }
+
+    try {
+        const response = await fetch("https://backend-projekt-admin.onrender.com/admin/login", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(admin)
+        })
+        if(response.ok){
+            const loggedInAdmin = await response.json();
+            localStorage.setItem("voff_token", loggedInAdmin.token);
+            window.location.href = "admin.html";
+        } else {
+            const error = await response.json();
+            console.log("Meddelande från server: " + error.errors );
+        }
+
+    } catch (error) {
+        console.log("Felaktigt användarnamn eller lösenord");
     }
 }
