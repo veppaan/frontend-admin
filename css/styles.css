@@ -1,0 +1,21 @@
+body{
+    max-width: 1000px;
+    margin: 0 auto;
+    line-height: 1.5;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.container{
+    width: 250px;
+    margin: 0 auto;
+    text-align: center;
+}
+header{
+    margin-top: 2em;
+    margin-bottom: 3em;
+    text-align: center;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+
