@@ -69,7 +69,7 @@ function checkMenu(){
 
     if(logoutBtn){
         logoutBtn.addEventListener("click", () => {
-            localStorage.removeItem("voff-token");
+            localStorage.removeItem("voff_token");
             window.location.href = "login.html";
         })
     }
