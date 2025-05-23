@@ -52,8 +52,6 @@ async function showMeals(meals) {
 //Kollar menyn
 function checkMenu(){
 
-    //localStorage.setItem("voff-token", "hejsan");
-
     if(localStorage.getItem("voff_token")){
         navMenu.innerHTML=`
         <a href="index.html">Startsida</a>
@@ -104,8 +102,9 @@ async function login(e){
             localStorage.setItem("voff_token", loggedInAdmin.token);
             window.location.href = "admin.html";
         } else {
+            //Skriver ut meddelanden från backend
             const error = await response.json();
-            console.log("Meddelande från server: " + error.errors );
+            console.log("Meddelande från server: ", error );
         }
 
     } catch (error) {
