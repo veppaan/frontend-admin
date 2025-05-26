@@ -2,6 +2,7 @@
 const allMeals = document.getElementById("all-meals");
 const startMeals = document.getElementById("start-meals");
 const navMenu = document.getElementById("menu");
+const editForm = document.getElementById("edit-form");
 
 //Logga in
 const formLogin = document.getElementById("form-login");
@@ -15,6 +16,9 @@ function init(){
     }
     if(startMeals){
         getStartMeals();
+    }
+    if(editForm){
+        editMeal();
     }
     checkMenu();
     if(formLogin){
@@ -110,12 +114,36 @@ async function showMeals(meals) {
         <p>${meal.ingredients.join(", ")}</p>
         <p><i>${meal.category}</i></p>
         <div id="mealButtons">
-        <button id="edit">Redigera</button>
+        <a href="edit.html?id=${meal._id}"<button id="edit">Redigera</button></a>
         <button id="delete">Radera</button>
         </div>
         </section>`
     });
 
+}
+
+async function editMeal() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    const name = document.getElementById("name");
+    const ingredients = document.getElementById("ingredients");
+    const category = document.getElementById("category");
+
+    try{
+        const response = await fetch(`https://backend-projekt-api-jxss.onrender.com/api/meals/${id}`);
+
+        if(response.ok){
+            const data  = await response.json();
+            name.value = data.message.mealname;
+            ingredients.value = data.message.ingredients;
+            category.value = data.message.category;
+            console.log(data);
+        }
+
+    } catch (error) {
+        console.log("Error when fetching specific meal")
+    }
 }
 
 //Kollar menyn
