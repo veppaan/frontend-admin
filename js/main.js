@@ -4,10 +4,6 @@ const startMeals = document.getElementById("start-meals");
 const navMenu = document.getElementById("menu");
 const editForm = document.getElementById("edit-form");
 
-if(editForm){
-    editForm.addEventListener("submit", updateMeal);
-}
-
 
 //Logga in
 const formLogin = document.getElementById("form-login");
@@ -88,9 +84,13 @@ async function showMeals(meals) {
             <p><i>${meal.category}</i></p>
             <div id="mealButtons">
             <button id="edit">Redigera</button>
-            <button id="delete">Radera</button>
+            <button class="deleteBtn">Radera</button>
             </div>
-            </section>`
+            </section>`;
+            const deleteMealBtn = document.querySelectorAll(".deleteBtn");
+            deleteMealBtn.forEach(btn => {
+                btn.addEventListener("click", () => deleteMeal(meal._id))
+            });
         });
     }else {
         allMeals.innerHTML = "";
@@ -104,9 +104,13 @@ async function showMeals(meals) {
         <p><i>${meal.category}</i></p>
         <div id="mealButtons">
         <button id="edit">Redigera</button>
-        <button id="delete">Radera</button>
+        <button id="deleteBtn">Radera</button>
         </div>
-        </section>`
+        </section>`;
+        const deleteMealBtn = document.querySelectorAll(".deleteBtn");
+        deleteMealBtn.forEach(btn => {
+            btn.addEventListener("click", () => deleteMeal(meal._id))
+        });
     });
     }
 })
@@ -120,11 +124,35 @@ async function showMeals(meals) {
         <p><i>${meal.category}</i></p>
         <div id="mealButtons">
         <a href="edit.html?id=${meal._id}"<button id="edit">Redigera</button></a>
-        <button id="delete">Radera</button>
+        <button id="deleteBtn">Radera</button>
         </div>
-        </section>`
-    });
+        </section>`;
+            const deleteMealBtn = document.querySelectorAll(".deleteBtn");
+            deleteMealBtn.forEach(btn => {
+                btn.addEventListener("click", () => deleteMeal(meal._id))
+            });
+        })
 
+}
+
+async function deleteMeal(id){
+
+    console.log("Radera");
+
+    try {
+        const response = await fetch(`https://backend-projekt-api-jxss.onrender.com/api/meals/${id}`, {
+            method: 'DELETE'
+        })
+        if(response.ok){
+            const data = await response.json();
+            console.log(data);
+        } else {
+            const err = await response.json();
+            console.log(err);
+        }
+    } catch (error) {
+        console.log("Error deleting meal")
+    }
 }
 
 async function editMeal() {
@@ -141,25 +169,43 @@ async function editMeal() {
         if(response.ok){
             const data  = await response.json();
             name.value = data.message.mealname;
-            ingredients.value = data.message.ingredients;
+            ingredients.value = data.message.ingredients.join(", ");
             category.value = data.message.category;
             console.log(data);
         }
+        editForm.addEventListener("submit", (e) => updateMeal(e, id));
 
     } catch (error) {
         console.log("Error when fetching specific meal")
     }
 }
 
-async function updateMeal(e){
+async function updateMeal(e, id){
     e.preventDefault();
     const updatedValues = {
-        name: document.getElementById("name").value,
+        mealname: document.getElementById("name").value,
         ingredients: document.getElementById("ingredients").value,
         category: document.getElementById("category").value
     }
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
+    try {
+        const response = await fetch(`https://backend-projekt-api-jxss.onrender.com/api/meals/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updatedValues)
+        })
+        if(response.ok){
+            const data = await response.json();
+            console.log(data);
+            window.location.href="admin.html";
+        } else {
+            const err = await response.json();
+            console.log(err);
+        }
+    } catch (error) {
+        console.log("Error updating meal")
+    }
 
 }
 
