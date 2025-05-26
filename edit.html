@@ -21,7 +21,12 @@
         <label for="ingredients">Ingredienser (dela upp med komma):</label>
         <input type="text" name="ingredients" id="ingredients">
         <label for="category">Kategori:</label>
-        <input type="text" name="category" id="category">
+        <select name="category" id="category">
+            <option value="" disabled>Välj kategori</option>
+            <option value="Förrätt">Förrätt</option>
+            <option value="Huvudrätt">Huvudrätt</option>
+            <option value="Efterrätt">Efterrätt</option>
+        </select>
         <button type="submit">Uppdatera mål</button>
     </form>
 </body>

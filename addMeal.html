@@ -21,7 +21,12 @@
         <label for="new-ingredients">Ingredienser (dela upp med komma):</label>
         <input type="text" name="new-ingredients" id="new-ingredients">
         <label for="new-category">Kategori:</label>
-        <input type="text" name="new-category" id="new-category">
+        <select name="new-category" id="new-category">
+            <option value="" disabled selected>Välj kategori</option>
+            <option value="starter">Förrätt</option>
+            <option value="main-course">Huvudrätt</option>
+            <option value="dessert">Efterrätt</option>
+        </select>
         <button type="submit">Lägg till mål</button>
     </form>
 </body>
