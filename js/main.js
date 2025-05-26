@@ -63,8 +63,32 @@ async function showStartMeals(meals) {
 
 //Visa och skriv ut alla måltider
 async function showMeals(meals) {
-    allMeals.innerHTML = "";
-    meals.forEach(meal => {
+    
+    document.querySelectorAll('input[name="meals"]').forEach(checked => {
+        checked.addEventListener("change", (e) => {
+        
+        allMeals.innerHTML = "";
+            
+        const checkedRadio = e.target.value;
+        
+        if (checkedRadio == "all"){
+        meals.forEach(meal => {
+            allMeals.innerHTML += `<section class="oneMeal">
+            <h4>${meal.mealname}</h4>
+            <p>${meal.ingredients.join(", ")}</p>
+            <p><i>${meal.category}</i></p>
+            <div id="mealButtons">
+            <button id="edit">Redigera</button>
+            <button id="delete">Radera</button>
+            </div>
+            </section>`
+        });
+    }else {
+        allMeals.innerHTML = "";
+        const categoryMeals = meals.filter(meal => meal.category === checkedRadio);
+        console.log(categoryMeals);
+
+        categoryMeals.forEach(meal => {
         allMeals.innerHTML += `<section class="oneMeal">
         <h4>${meal.mealname}</h4>
         <p>${meal.ingredients.join(", ")}</p>
@@ -75,6 +99,23 @@ async function showMeals(meals) {
         </div>
         </section>`
     });
+    }
+})
+    });
+    allMeals.innerHTML = "";
+
+        meals.forEach(meal => {
+        allMeals.innerHTML += `<section class="oneMeal">
+        <h4>${meal.mealname}</h4>
+        <p>${meal.ingredients.join(", ")}</p>
+        <p><i>${meal.category}</i></p>
+        <div id="mealButtons">
+        <button id="edit">Redigera</button>
+        <button id="delete">Radera</button>
+        </div>
+        </section>`
+    });
+
 }
 
 //Kollar menyn

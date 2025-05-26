@@ -17,12 +17,19 @@
     </header>
     <main class="container">
         <p>Admin-sida</p>
-        <label for="category">Välj kategori:</label>
-        <select name="category" id="category">
-            <option value="starter">Förrätter</option>
-            <option value="main-courses">Huvudrätter</option>
-            <option value="desserts">Efterrätter</option>
-        </select>
+        <h3>Välj kategori:</h3>
+        <label for="starter">Alla måltider
+            <input type="radio" name="meals" value="all" checked>
+        </label>
+        <label for="starter">Förätter
+            <input type="radio" name="meals" value="Förrätt">
+        </label>
+        <label for="main-courses">Huvudrätter
+            <input type="radio" name="meals" value="Huvudrätt">
+        </label>
+        <label for="desserts">Efterrätter
+            <input type="radio" name="meals" value="Efterrätt">
+        </label>
         <div id="all-meals"></div>
     </main>
 </body>
