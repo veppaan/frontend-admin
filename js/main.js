@@ -149,6 +149,7 @@ async function deleteMeal(id){
         if(response.ok){
             const data = await response.json();
             console.log(data);
+            getMeals();
         } else {
             const err = await response.json();
             console.log(err);
