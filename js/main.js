@@ -5,6 +5,7 @@ const navMenu = document.getElementById("menu");
 const editForm = document.getElementById("edit-form");
 const addForm = document.getElementById("add-form")
 const addBtn = document.getElementById("addMeal");
+const allBookings = document.getElementById("bookings");
 
 
 //Logga in
@@ -22,6 +23,9 @@ function init(){
     }
     if(editForm){
         editMeal();
+    }
+    if(bookings){
+        getBookings();
     }
 
     checkMenu();
@@ -309,5 +313,59 @@ async function login(e){
 
     } catch (error) {
         console.log("Felaktigt användarnamn eller lösenord");
+    }
+}
+
+async function getBookings(){
+    try{
+        const response = await fetch("https://backend-projekt-api-jxss.onrender.com/api/meals");
+
+        if(response.ok){
+            const data  = await response.json();
+            showBookings(data);
+        }
+
+    } catch (error) {
+        console.log("Error when fetching meals")
+    }
+}
+async function showBookings(bookings){
+        
+        allBookings.innerHTML = "";
+
+        allBookings.forEach(book => {
+            bookings.innerHTML += `<section class="oneMeal">
+            <h4>${book.starter}</h4>
+            <p>${book.mainCourse}</p>
+            <p><i>${book.dessert}</i></p>
+            <button class="deleteBookBtn">Radera</button>
+            </section>`;
+            const deleteBookingBtn = document.querySelectorAll(".deleteBookBtn");
+            deleteBookingBtn.forEach(btn => {
+                btn.addEventListener("click", () => deleteBooking(book._id))
+            });
+        });
+}
+async function deleteBooking(id){
+
+    console.log("Raderar bokning");
+
+    try {
+        const response = await fetch(`https://backend-bookings.onrender.com/bookings/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        if(response.ok){
+            const data = await response.json();
+            console.log(data);
+            getBookings();
+        } else {
+            const err = await response.json();
+            console.log(err);
+        }
+    } catch (error) {
+        console.log("Error deleting booking")
     }
 }
