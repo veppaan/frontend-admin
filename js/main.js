@@ -141,7 +141,10 @@ async function deleteMeal(id){
 
     try {
         const response = await fetch(`https://backend-projekt-api-jxss.onrender.com/api/meals/${id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            }
         })
         if(response.ok){
             const data = await response.json();
