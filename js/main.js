@@ -74,7 +74,7 @@ async function showStartMeals(meals) {
         startMeals.innerHTML += `<section class="oneMeal">
         <h4>${meal.mealname}</h4>
         <p>${meal.ingredients.join(", ")}</p>
-        <p>${meal.category}</p>
+        <p><i>${meal.category}</i></p>
         </section>`
     });
 }
@@ -95,7 +95,7 @@ async function showMeals(meals) {
             <h4>${meal.mealname}</h4>
             <p>${meal.ingredients.join(", ")}</p>
             <p><i>${meal.category}</i></p>
-            <div id="mealButtons">
+            <div class="mealbuttons">
             <button id="edit">Redigera</button>
             <button class="deleteBtn">Radera</button>
             </div>
@@ -115,7 +115,7 @@ async function showMeals(meals) {
         <h4>${meal.mealname}</h4>
         <p>${meal.ingredients.join(", ")}</p>
         <p><i>${meal.category}</i></p>
-        <div id="mealButtons">
+        <div class="mealbuttons">
         <button id="edit">Redigera</button>
         <button class="deleteBtn">Radera</button>
         </div>
@@ -135,7 +135,7 @@ async function showMeals(meals) {
         <h4>${meal.mealname}</h4>
         <p>${meal.ingredients.join(", ")}</p>
         <p><i>${meal.category}</i></p>
-        <div id="mealButtons">
+        <div class="mealbuttons">
         <a href="edit.html?id=${meal._id}"<button id="edit">Redigera</button></a>
         <button class="deleteBtn">Radera</button>
         </div>
@@ -348,11 +348,14 @@ async function showBookings(bookings){
                 month: 'long',
                 year: 'numeric'
             });
-            allBookings.innerHTML += `<section class="oneMeal">
-            <p>${time} - ${dateToShow}</p>
+            allBookings.innerHTML += `<section class="oneBooking">
+            <p class="booking-time">${time} - ${dateToShow}</p>
             <p>${book.starter}</p>
             <p>${book.mainCourse}</p>
             <p><i>${book.dessert}</i></p>
+            <h5>Kund:</h5>
+            <p>${book.customer.firstname} ${book.customer.lastname}</p>
+            <p>${book.customer.number}</p>
             <button class="deleteBookBtn">Radera</button>
             </section>`;
             const deleteBookingBtn = document.querySelectorAll(".deleteBookBtn");

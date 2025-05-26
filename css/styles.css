@@ -5,7 +5,7 @@ body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .container{
-    width: 250px;
+    width: 600px;
     margin: 0 auto;
     text-align: center;
 }
@@ -17,5 +17,51 @@ header{
 form{
     display: flex;
     flex-direction: column;
+}
+.oneBooking{
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    border: 2px solid rgb(230, 150, 52);
+    border-radius: 20px;
+    padding: 2em 7em;
+    margin-bottom: 1em;
+}
+.oneMeal{
+    width: 60%;
+    margin: 0 auto;
+    border: 2px solid rgb(230, 150, 52);
+    border-radius: 20px;
+    padding: 2em 7em;
+    margin-bottom: 1em;
+}
+.booking-time{
+    font-weight: 600;
+    color: red;
+}
+#start-meals{
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto;
+}
+#menu a, #menu button{
+    color: rgb(233, 233, 225);
+    text-decoration: none;
+    border: none;
+    background-color: rgb(89, 154, 83);
+    padding: 0.5em 0.8em;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0.5em 0.5em
+}
+#menu a:hover, #menu button:hover{
+    color: rgb(89, 154, 83);
+    background-color: rgb(233, 233, 225);
+    cursor: pointer;
+}
+.mealbuttons button, .mealbuttons a{
+    color: blue;
+    background-color: blue;
 }
 
