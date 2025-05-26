@@ -24,7 +24,7 @@ function init(){
     if(editForm){
         editMeal();
     }
-    if(bookings){
+    if(allBookings){
         getBookings();
     }
 
@@ -318,7 +318,7 @@ async function login(e){
 
 async function getBookings(){
     try{
-        const response = await fetch("https://backend-projekt-api-jxss.onrender.com/api/meals");
+        const response = await fetch("https://backend-bookings.onrender.com/bookings");
 
         if(response.ok){
             const data  = await response.json();
@@ -330,12 +330,24 @@ async function getBookings(){
     }
 }
 async function showBookings(bookings){
+    console.log(bookings);
         
         allBookings.innerHTML = "";
 
-        allBookings.forEach(book => {
-            bookings.innerHTML += `<section class="oneMeal">
-            <h4>${book.starter}</h4>
+        bookings.forEach(book => {
+            const date = new Date(book.created);
+            const time = date.toLocaleString('sv-SE', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            const dateToShow = date.toLocaleString('sv-SE', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            allBookings.innerHTML += `<section class="oneMeal">
+            <p>${time} - ${dateToShow}</p>
+            <p>${book.starter}</p>
             <p>${book.mainCourse}</p>
             <p><i>${book.dessert}</i></p>
             <button class="deleteBookBtn">Radera</button>
