@@ -1,5 +1,6 @@
 //Variabler
 const allMeals = document.getElementById("all-meals");
+const startMeals = document.getElementById("start-meals");
 const navMenu = document.getElementById("menu");
 
 //Logga in
@@ -11,6 +12,9 @@ function init(){
     //Kolla om listan har värden
     if(allMeals){
         getMeals();
+    }
+    if(startMeals){
+        getStartMeals();
     }
     checkMenu();
     if(formLogin){
@@ -32,6 +36,30 @@ async function getMeals() {
         console.log("Error when fetching meals")
     }
 }
+async function getStartMeals() {
+    try{
+        const response = await fetch("https://backend-projekt-api-jxss.onrender.com/api/meals");
+
+        if(response.ok){
+            const data  = await response.json();
+            showStartMeals(data);
+        }
+
+    } catch (error) {
+        console.log("Error when fetching meals")
+    }
+}
+
+async function showStartMeals(meals) {
+    startMeals.innerHTML = "";
+    meals.forEach(meal => {
+        startMeals.innerHTML += `<section class="oneMeal">
+        <h4>${meal.mealname}</h4>
+        <p>${meal.ingredients.join(", ")}</p>
+        <p>${meal.category}</p>
+        </section>`
+    });
+}
 
 //Visa och skriv ut alla måltider
 async function showMeals(meals) {
@@ -40,7 +68,7 @@ async function showMeals(meals) {
         allMeals.innerHTML += `<section class="oneMeal">
         <h4>${meal.mealname}</h4>
         <p>${meal.ingredients.join(", ")}</p>
-        <p>${meal.category}</p>
+        <p><i>${meal.category}</i></p>
         <div id="mealButtons">
         <button id="edit">Redigera</button>
         <button id="delete">Radera</button>
