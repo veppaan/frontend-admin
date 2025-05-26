@@ -104,7 +104,7 @@ async function showMeals(meals) {
         <p><i>${meal.category}</i></p>
         <div id="mealButtons">
         <button id="edit">Redigera</button>
-        <button id="deleteBtn">Radera</button>
+        <button class="deleteBtn">Radera</button>
         </div>
         </section>`;
         const deleteMealBtn = document.querySelectorAll(".deleteBtn");
@@ -124,7 +124,7 @@ async function showMeals(meals) {
         <p><i>${meal.category}</i></p>
         <div id="mealButtons">
         <a href="edit.html?id=${meal._id}"<button id="edit">Redigera</button></a>
-        <button id="deleteBtn">Radera</button>
+        <button class="deleteBtn">Radera</button>
         </div>
         </section>`;
             const deleteMealBtn = document.querySelectorAll(".deleteBtn");
