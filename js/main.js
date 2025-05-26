@@ -150,7 +150,10 @@ async function showMeals(meals) {
 
 async function deleteMeal(id){
 
-    console.log("Radera");
+    const confirmDelete = confirm("Är du säker på att du vill ta bort måltiden?");
+    if(!confirmDelete){
+        return;
+    }
 
     try {
         const response = await fetch(`https://backend-projekt-api-jxss.onrender.com/api/meals/${id}`, {
@@ -360,7 +363,10 @@ async function showBookings(bookings){
 }
 async function deleteBooking(id){
 
-    console.log("Raderar bokning");
+    const confirmDelete = confirm("Är du säker på att du vill ta bort bokningen?");
+    if(!confirmDelete){
+        return;
+    }
 
     try {
         const response = await fetch(`https://backend-bookings.onrender.com/bookings/${id}`, {
