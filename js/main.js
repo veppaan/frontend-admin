@@ -3,6 +3,8 @@ const allMeals = document.getElementById("all-meals");
 const startMeals = document.getElementById("start-meals");
 const navMenu = document.getElementById("menu");
 const editForm = document.getElementById("edit-form");
+const addForm = document.getElementById("add-form")
+const addBtn = document.getElementById("addMeal");
 
 
 //Logga in
@@ -21,10 +23,17 @@ function init(){
     if(editForm){
         editMeal();
     }
+
     checkMenu();
+
     if(formLogin){
         formLogin.addEventListener("submit", login);
     }
+
+    if(addForm){
+        addForm.addEventListener("submit", addMeal);
+    }
+
 }
 
 //Hämta måltider
@@ -210,7 +219,34 @@ async function updateMeal(e, id){
     } catch (error) {
         console.log("Error updating meal")
     }
+}
 
+async function addMeal(e){
+    e.preventDefault();
+    const newMeal = {
+        mealname: document.getElementById("new-name").value,
+        ingredients: document.getElementById("new-ingredients").value,
+        category: document.getElementById("new-category").value
+    }
+    try {
+        const response = await fetch("https://backend-projekt-api-jxss.onrender.com/api/meals", {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newMeal)
+        })
+        if(response.ok){
+            const data = await response.json();
+            console.log(data);
+            window.location.href="admin.html";
+        } else {
+            const err = await response.json();
+            console.log(err);
+        }
+    } catch (error) {
+        console.log("Error adding meal")
+    }
 }
 
 //Kollar menyn
