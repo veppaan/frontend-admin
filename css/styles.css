@@ -1,4 +1,4 @@
-body{
+body:not("hr"){
     max-width: 1000px;
     margin: 0 auto;
     line-height: 1.5;
@@ -63,6 +63,9 @@ form{
     background-color: rgb(233, 233, 225);
     cursor: pointer;
 }
+#menu{
+    margin-top: 1.5em;
+}
 .mealbuttons button{
     color: red;
     border: 0.5px solid #ddd;
@@ -106,4 +109,60 @@ form{
 .radio{
     margin: 3em 1em;
 }
-
+footer p {
+    margin-top: 2em;
+    margin-bottom: 4em;
+    margin-left: 28%;
+}
+hr{
+    margin-top: 4em;
+    width: 100%;
+}
+.radio label{
+    margin-left: 0.7em
+}
+#username, #password{
+    height: 1.25em;
+    margin-bottom: 2em;
+}
+#form-login{
+    background-color: rgb(233, 233, 225);
+    padding: 2em 3em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+#form-login label{
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-top: 1.5em;
+    color: darkgreen;
+}
+#form-login h1{
+    font-size: 1.8em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em
+}
+#form-login button[type="submit"]{
+    width: 200px;
+    margin: 0 auto;
+    color: white;
+    background-color: green;
+    border: 1px solid white;
+    height: 3em;
+    border-radius: 8px;
+    margin-top: 2em;
+}
+#form-login button[type="submit"]:hover{
+    width: 200px;
+    color: green;
+    background-color: white;
+    border: 1px solid green;
+    cursor: pointer;
+}
+#form-login input{
+    width: 300px;
+    border-radius: 6px;
+    margin: 0 auto;
+    height: 2em;
+    border: 0.5px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
