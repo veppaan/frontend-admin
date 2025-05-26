@@ -4,6 +4,11 @@ const startMeals = document.getElementById("start-meals");
 const navMenu = document.getElementById("menu");
 const editForm = document.getElementById("edit-form");
 
+if(editForm){
+    editForm.addEventListener("submit", updateMeal);
+}
+
+
 //Logga in
 const formLogin = document.getElementById("form-login");
 
@@ -144,6 +149,18 @@ async function editMeal() {
     } catch (error) {
         console.log("Error when fetching specific meal")
     }
+}
+
+async function updateMeal(e){
+    e.preventDefault();
+    const updatedValues = {
+        name: document.getElementById("name").value,
+        ingredients: document.getElementById("ingredients").value,
+        category: document.getElementById("category").value
+    }
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
 }
 
 //Kollar menyn
