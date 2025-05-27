@@ -353,7 +353,7 @@ async function showBookings(bookings){
             <p>${book.starter}</p>
             <p>${book.mainCourse}</p>
             <p><i>${book.dessert}</i></p>
-            <h5>Kund:</h5>
+            <h4>Kund:</h4>
             <p>${book.customer.firstname} ${book.customer.lastname}</p>
             <p>${book.customer.number}</p>
             <button class="deleteBookBtn">Radera</button>
