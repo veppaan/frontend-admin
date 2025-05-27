@@ -66,7 +66,7 @@ form{
 #menu{
     margin-top: 1.5em;
 }
-.mealbuttons button{
+.mealbuttons button, .deleteBookBtn{
     color: red;
     border: 0.5px solid #ddd;
     border-radius: 6px;
@@ -87,7 +87,7 @@ form{
     color: white;
     background-color: blue;
 }
-.mealbuttons button:hover{
+.mealbuttons button:hover, .deleteBookBtn:hover{
     color: white;
     background-color: red;
     cursor: pointer;
