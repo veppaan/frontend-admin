@@ -82,7 +82,7 @@ form{
     text-decoration: none;
     padding: 0.2em 0.5em;
 }
-.mealbuttons a{
+.mealbuttons a, #edit{
     background-color: white;
     color: blue;
     text-decoration: none;
@@ -91,7 +91,7 @@ form{
     border-radius: 6px;
     padding: 0.2em 0.5em;
 }
-.mealbuttons a:hover{
+.mealbuttons a:hover, #edit:hover{
     color: white;
     background-color: blue;
 }
