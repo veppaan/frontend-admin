@@ -82,52 +82,36 @@ async function showStartMeals(meals) {
 //Visa och skriv ut alla måltider
 async function showMeals(meals) {
     
-    document.querySelectorAll('input[name="meals"]').forEach(checked => {
-        checked.addEventListener("change", (e) => {
-        
+document.querySelectorAll('input[name="meals"]').forEach(checked => {
+    checked.addEventListener("change", (e) => {
         allMeals.innerHTML = "";
-            
         const checkedRadio = e.target.value;
-        
-        if (checkedRadio == "all"){
-        meals.forEach(meal => {
+
+        let filteredMeals;
+        if (checkedRadio === "all") {
+            filteredMeals = meals;
+        } else {
+            filteredMeals = meals.filter(meal => meal.category === checkedRadio);
+        }
+
+        filteredMeals.forEach(meal => {
             allMeals.innerHTML += `<section class="oneMeal">
             <h4>${meal.mealname}</h4>
             <p>${meal.ingredients.join(", ")}</p>
             <p><i>${meal.category}</i></p>
             <div class="mealbuttons">
-            <button id="edit">Redigera</button>
+            <a href="edit.html?id=${meal._id}"><button id="edit">Redigera</button></a>
             <button class="deleteBtn">Radera</button>
             </div>
             </section>`;
         });
-        const deleteMealBtn = document.querySelectorAll(".deleteBtn");
-            deleteMealBtn.forEach((btn, index) => {
-                btn.addEventListener("click", () => deleteMeal(meals[index]))
-            });
-    }else {
-        allMeals.innerHTML = "";
-        const categoryMeals = meals.filter(meal => meal.category === checkedRadio);
-        console.log(categoryMeals);
 
-        categoryMeals.forEach(meal => {
-        allMeals.innerHTML += `<section class="oneMeal">
-        <h4>${meal.mealname}</h4>
-        <p>${meal.ingredients.join(", ")}</p>
-        <p><i>${meal.category}</i></p>
-        <div class="mealbuttons">
-        <button id="edit">Redigera</button>
-        <button class="deleteBtn">Radera</button>
-        </div>
-        </section>`;
+        const deleteMealBtn = document.querySelectorAll(".deleteBtn");
+        deleteMealBtn.forEach((btn, index) => {
+            btn.addEventListener("click", () => deleteMeal(filteredMeals[index]));
+        });
     });
-    const deleteMealBtn = document.querySelectorAll(".deleteBtn");
-            deleteMealBtn.forEach((btn, index) => {
-                btn.addEventListener("click", () => deleteMeal(meals[index]))
-            });
-    }
-})
-    });
+});
     allMeals.innerHTML = "";
 
         meals.forEach(meal => {
