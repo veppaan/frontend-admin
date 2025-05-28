@@ -365,6 +365,7 @@ async function showBookings(bookings){
         });
 }
 async function deleteBooking(id){
+    console.log(id);
 
     const confirmDelete = confirm("Är du säker på att du vill ta bort bokningen?");
     if(!confirmDelete){
