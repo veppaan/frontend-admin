@@ -140,15 +140,16 @@ async function showMeals(meals) {
         <button class="deleteBtn">Radera</button>
         </div>
         </section>`;
-            const deleteMealBtn = document.querySelectorAll(".deleteBtn");
-            deleteMealBtn.forEach(btn => {
-                btn.addEventListener("click", () => deleteMeal(meal._id))
-            });
         })
+        const deleteMealBtn = document.querySelectorAll(".deleteBtn");
+            deleteMealBtn.forEach((btn, index) => {
+                btn.addEventListener("click", () => deleteMeal(meals[index]))
+            });
 
 }
 
-async function deleteMeal(id){
+async function deleteMeal(meal){
+    console.log(meal);
 
     const confirmDelete = confirm("Är du säker på att du vill ta bort måltiden?");
     if(!confirmDelete){
@@ -156,7 +157,7 @@ async function deleteMeal(id){
     }
 
     try {
-        const response = await fetch(`https://backend-projekt-api-jxss.onrender.com/api/meals/${id}`, {
+        const response = await fetch(`https://backend-projekt-api-jxss.onrender.com/api/meals/${meal._id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -358,14 +359,16 @@ async function showBookings(bookings){
             <p>${book.customer.number}</p>
             <button class="deleteBookBtn">Radera</button>
             </section>`;
-            const deleteBookingBtn = document.querySelectorAll(".deleteBookBtn");
-            deleteBookingBtn.forEach(btn => {
-                btn.addEventListener("click", () => deleteBooking(book._id))
             });
+            const deleteBookingBtn = document.querySelectorAll(".deleteBookBtn");
+            deleteBookingBtn.forEach((btn, index) => {
+                btn.addEventListener("click", () => {
+                    deleteBooking(bookings[index])
+                });
         });
 }
-async function deleteBooking(id){
-    console.log(id);
+async function deleteBooking(booking){
+    console.log(booking);
 
     const confirmDelete = confirm("Är du säker på att du vill ta bort bokningen?");
     if(!confirmDelete){
@@ -373,7 +376,7 @@ async function deleteBooking(id){
     }
 
     try {
-        const response = await fetch(`https://backend-bookings.onrender.com/bookings/${id}`, {
+        const response = await fetch(`https://backend-bookings.onrender.com/bookings/${booking._id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
