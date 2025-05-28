@@ -100,11 +100,11 @@ async function showMeals(meals) {
             <button class="deleteBtn">Radera</button>
             </div>
             </section>`;
-            const deleteMealBtn = document.querySelectorAll(".deleteBtn");
-            deleteMealBtn.forEach(btn => {
-                btn.addEventListener("click", () => deleteMeal(meal._id))
-            });
         });
+        const deleteMealBtn = document.querySelectorAll(".deleteBtn");
+            deleteMealBtn.forEach((btn, index) => {
+                btn.addEventListener("click", () => deleteMeal(meals[index]))
+            });
     }else {
         allMeals.innerHTML = "";
         const categoryMeals = meals.filter(meal => meal.category === checkedRadio);
@@ -120,11 +120,11 @@ async function showMeals(meals) {
         <button class="deleteBtn">Radera</button>
         </div>
         </section>`;
-        const deleteMealBtn = document.querySelectorAll(".deleteBtn");
-        deleteMealBtn.forEach(btn => {
-            btn.addEventListener("click", () => deleteMeal(meal._id))
-        });
     });
+    const deleteMealBtn = document.querySelectorAll(".deleteBtn");
+            deleteMealBtn.forEach((btn, index) => {
+                btn.addEventListener("click", () => deleteMeal(meals[index]))
+            });
     }
 })
     });
