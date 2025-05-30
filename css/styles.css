@@ -120,10 +120,11 @@ form{
     color: white;
     background-color: green;
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 1.1em;
     border-radius: 6px;
     border: 1px solid white;
     padding: 0.5em 0.8em;
+    margin-top: 1em;
 }
 #addMeal:hover{
     cursor: pointer;
