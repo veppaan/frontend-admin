@@ -298,3 +298,6 @@ hr{
         border: 1px solid green;
     }
 }
+#errorLogin{
+    color: rgb(227, 1, 1);
+}

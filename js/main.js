@@ -93,7 +93,7 @@ document.querySelectorAll('input[name="meals"]').forEach(checked => {
         } else {
             filteredMeals = meals.filter(meal => meal.category === checkedRadio);
         }
-
+        //Visar måltider från sortering
         filteredMeals.forEach(meal => {
             allMeals.innerHTML += `<section class="oneMeal">
             <h4>${meal.mealname}</h4>
@@ -131,7 +131,7 @@ document.querySelectorAll('input[name="meals"]').forEach(checked => {
             });
 
 }
-
+//Radera måltid
 async function deleteMeal(meal){
     console.log(meal);
 
@@ -159,7 +159,7 @@ async function deleteMeal(meal){
         console.log("Error deleting meal")
     }
 }
-
+//Redigera måltid
 async function editMeal() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
@@ -184,7 +184,7 @@ async function editMeal() {
         console.log("Error when fetching specific meal")
     }
 }
-
+//Uppdatera måltiden med nya värden
 async function updateMeal(e, id){
     e.preventDefault();
     const updatedValues = {
@@ -212,7 +212,7 @@ async function updateMeal(e, id){
         console.log("Error updating meal")
     }
 }
-
+//Lägg till måltid
 async function addMeal(e){
     e.preventDefault();
     const newMeal = {
@@ -280,6 +280,7 @@ async function login(e){
         username: usernameValue,
         password: passwordValue
     }
+    const errorLogin = document.getElementById("errorLogin");
 
     try {
         const response = await fetch("https://backend-projekt-admin.onrender.com/admin/login", {
@@ -296,14 +297,14 @@ async function login(e){
         } else {
             //Skriver ut meddelanden från backend
             const error = await response.json();
-            console.log("Meddelande från server: ", error );
+            errorLogin.innerHTML = (error.message);
         }
 
     } catch (error) {
-        console.log("Felaktigt användarnamn eller lösenord");
+        errorLogin.innerHTML = ("Felaktigt användarnamn eller lösenord");
     }
 }
-
+//Hämta boknignar
 async function getBookings(){
     try{
         const response = await fetch("https://backend-bookings.onrender.com/bookings");
@@ -317,6 +318,7 @@ async function getBookings(){
         console.log("Error when fetching meals")
     }
 }
+//Visar bokningar
 async function showBookings(bookings){
     console.log(bookings);
         
@@ -333,6 +335,7 @@ async function showBookings(bookings){
                 month: 'long',
                 year: 'numeric'
             });
+            //SKapar element för varje bokning
             allBookings.innerHTML += `<section class="oneBooking">
             <p class="booking-time">${time} - ${dateToShow}</p>
             <p>${book.starter}</p>
@@ -351,6 +354,7 @@ async function showBookings(bookings){
                 });
         });
 }
+//radera bokning
 async function deleteBooking(booking){
     console.log(booking);
 
