@@ -11,6 +11,6 @@ För icke inloggade:
 För inloggade: 
 - Startsida: Se hela utbudet
 - Admin: Hantera alla måltider genom att redigera, radera eller lägga in en ny måltid. Du kan också navigera dig mellan olika kategorier genom radio-knappar
-- Lägg till måltid (knapp frpn admin-sidan): Här kan du lägga till en ny måltid
+- Lägg till måltid (knapp från admin-sidan): Här kan du lägga till en ny måltid
 - Redigera måltid (knapp från specifik måltid): Här kan du redigera från redan satta värden
 - Bokingar: Här kan du sa alla bokningar som har gjorts, du kan också radera de här.
