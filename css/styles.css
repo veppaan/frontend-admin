@@ -1,3 +1,5 @@
+/* Styling för all information i webbplatsen */
+
 body:not(hr){
     max-width: 1000px;
     margin: 0 auto;
@@ -212,7 +214,7 @@ hr{
     border: none;
     border-radius: 4px;
 }
-
+/* Styling för små skärmar */
 @media screen and (max-width: 799px){
     .oneMeal{
         width: 200px;

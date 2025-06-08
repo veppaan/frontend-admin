@@ -42,6 +42,7 @@ function init(){
 
 //Hämta måltider
 async function getMeals() {
+    //Hämtar data från url
     try{
         const response = await fetch("https://backend-projekt-api-jxss.onrender.com/api/meals");
 
@@ -55,6 +56,7 @@ async function getMeals() {
     }
 }
 async function getStartMeals() {
+    //Hämtar data från url
     try{
         const response = await fetch("https://backend-projekt-api-jxss.onrender.com/api/meals");
 
@@ -70,6 +72,7 @@ async function getStartMeals() {
 
 async function showStartMeals(meals) {
     startMeals.innerHTML = "";
+    //Utskrift för måltider för startsida
     meals.forEach(meal => {
         startMeals.innerHTML += `<section class="oneMeal">
         <h4>${meal.mealname}</h4>
@@ -139,7 +142,7 @@ async function deleteMeal(meal){
     if(!confirmDelete){
         return;
     }
-
+//Hämtar data från url
     try {
         const response = await fetch(`https://backend-projekt-api-jxss.onrender.com/api/meals/${meal._id}`, {
             method: 'DELETE',
@@ -167,7 +170,7 @@ async function editMeal() {
     const name = document.getElementById("name");
     const ingredients = document.getElementById("ingredients");
     const category = document.getElementById("category");
-
+//Hämtar data från url
     try{
         const response = await fetch(`https://backend-projekt-api-jxss.onrender.com/api/meals/${id}`);
 
@@ -192,6 +195,7 @@ async function updateMeal(e, id){
         ingredients: document.getElementById("ingredients").value,
         category: document.getElementById("category").value
     }
+    //Hämtar data från url
     try {
         const response = await fetch(`https://backend-projekt-api-jxss.onrender.com/api/meals/${id}`, {
             method: 'PUT',
@@ -220,6 +224,7 @@ async function addMeal(e){
         ingredients: document.getElementById("new-ingredients").value,
         category: document.getElementById("new-category").value
     }
+    //Hämtar data från url
     try {
         const response = await fetch("https://backend-projekt-api-jxss.onrender.com/api/meals", {
             method: 'POST',
@@ -243,7 +248,7 @@ async function addMeal(e){
 
 //Kollar menyn
 function checkMenu(){
-
+//Visar olika menyer
     if(localStorage.getItem("voff_token")){
         navMenu.innerHTML=`
         <a href="index.html">Startsida</a>
@@ -272,6 +277,7 @@ async function login(e){
     const usernameValue = document.getElementById("username").value;
     let passwordValue = document.getElementById("password").value;
 
+    //Kollar om något fält är tomt
     if(!usernameValue || !passwordValue){
         console.log("Du måste fylla i alla fält!");
     }
@@ -281,7 +287,7 @@ async function login(e){
         password: passwordValue
     }
     const errorLogin = document.getElementById("errorLogin");
-
+//Hämtar data från url
     try {
         const response = await fetch("https://backend-projekt-admin.onrender.com/admin/login", {
             method: "POST",
@@ -306,6 +312,7 @@ async function login(e){
 }
 //Hämta boknignar
 async function getBookings(){
+    //Hämtar data från url
     try{
         const response = await fetch("https://backend-bookings.onrender.com/bookings");
 
@@ -335,7 +342,7 @@ async function showBookings(bookings){
                 month: 'long',
                 year: 'numeric'
             });
-            //SKapar element för varje bokning
+            //Skapar element för varje bokning
             allBookings.innerHTML += `<section class="oneBooking">
             <p class="booking-time">${time} - ${dateToShow}</p>
             <p>${book.starter}</p>
@@ -362,7 +369,7 @@ async function deleteBooking(booking){
     if(!confirmDelete){
         return;
     }
-
+//Hämtar data från url
     try {
         const response = await fetch(`https://backend-bookings.onrender.com/bookings/${booking._id}`, {
             method: 'DELETE',
