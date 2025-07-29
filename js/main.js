@@ -298,7 +298,7 @@ async function login(e){
         })
         if(response.ok){
             const loggedInAdmin = await response.json();
-            localStorage.setItem("voff_token", loggedInAdmin.token);
+            localStorage.setItem("voff_token", loggedInAdmin.response.token);
             window.location.href = "admin.html";
         } else {
             //Skriver ut meddelanden från backend
