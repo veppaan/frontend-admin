@@ -20,6 +20,7 @@ if(!localStorage.getItem("voff_token")){
             const data = await resp.json();
             console.log(data);
         }else{
+            const data = await resp.json();
             console.log(data);
             //localStorage.removeItem("voff_token");
             window.location.href = "login.html";
