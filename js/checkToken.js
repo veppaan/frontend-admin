@@ -8,7 +8,7 @@ if(!localStorage.getItem("token")){
 } else {
     const token = localStorage.getItem("token");
     try {
-        const resp = await fetch("https://backend-projekt-api-jxss.onrender.com/admin/secret", {
+        const resp = await fetch("https://backend-projekt-admin.onrender.com/admin/secret", {
             method: "GET",
             headers: {
                 "content-type": "application/json",
