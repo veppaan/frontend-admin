@@ -3,7 +3,7 @@
 //Kollar om det finns tokne och dess gilitghet
 async function checkToken(){
 
-if(!localStorage.getItem("token")){
+if(!localStorage.getItem("voff-token")){
     window.location.href = "login.html";
 } else {
     const token = localStorage.getItem("token");
@@ -20,6 +20,7 @@ if(!localStorage.getItem("token")){
             const data = await resp.json();
             console.log(data);
         }else{
+            console.log(data);
             localStorage.removeItem("voff-token");
             window.location.href = "login.html";
         }
