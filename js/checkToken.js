@@ -6,7 +6,7 @@ async function checkToken(){
 if(!localStorage.getItem("voff_token")){
     window.location.href = "login.html";
 } else {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("voff_token");
     try {
         const resp = await fetch("https://backend-projekt-admin.onrender.com/admin/secret", {
             method: "GET",
