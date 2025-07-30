@@ -143,11 +143,13 @@ async function deleteMeal(meal){
         return;
     }
 //Hämtar data från url
+const token = localStorage.getItem("voff_token");
     try {
         const response = await fetch(`https://backend-projekt-api-jxss.onrender.com/api/meals/${meal._id}`, {
             method: 'DELETE',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                "Authorization": `Bearer ` + token
             }
         })
         if(response.ok){
@@ -196,11 +198,13 @@ async function updateMeal(e, id){
         category: document.getElementById("category").value
     }
     //Hämtar data från url
+    const token = localStorage.getItem("voff_token");
     try {
         const response = await fetch(`https://backend-projekt-api-jxss.onrender.com/api/meals/${id}`, {
             method: 'PUT',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                "Authorization": `Bearer ` + token
             },
             body: JSON.stringify(updatedValues)
         })
@@ -225,11 +229,13 @@ async function addMeal(e){
         category: document.getElementById("new-category").value
     }
     //Hämtar data från url
+    const token = localStorage.getItem("voff_token");
     try {
         const response = await fetch("https://backend-projekt-api-jxss.onrender.com/api/meals", {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                "Authorization": `Bearer ` + token
             },
             body: JSON.stringify(newMeal)
         })
@@ -370,11 +376,13 @@ async function deleteBooking(booking){
         return;
     }
 //Hämtar data från url
+const token = localStorage.getItem("voff_token");
     try {
         const response = await fetch(`https://backend-bookings.onrender.com/bookings/${booking._id}`, {
             method: 'DELETE',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                "Authorization": `Bearer ` + token
             }
         })
         if(response.ok){
